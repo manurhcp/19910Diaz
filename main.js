@@ -33,10 +33,13 @@ let entradaConservas
 if (entradaUsuario === 1) {
 
     entradaPanes = parseInt (prompt("¡Hermosa elección!. Ahora ingrese que panificado desea: \n (1)" + pan1 + "\n (2)" + pan2 + "\n (3)" + pan3 + "\n (4)" + pan4))
+    console.log(ingresoPanes (entradaPanes));
+
 
     }else if (entradaUsuario ===2 ){
 
         entradaConservas = parseInt (prompt("¡Qué rico!. ¿Qué conservas quiere? \n (1)" + conserva1 + "\n (2)" + conserva2 + "\n (3)" + conserva3 + "\n (4)" + conserva4))
+        console.log(ingresoPanes (entradaConservas));
 
     }else if (entradaUsuario > 2 ){ 
         alert("El producto no existe")
@@ -96,10 +99,8 @@ function ingresoConservas(entradaConservas) {
 }
 
 
-console.log(ingresoPanes (entradaPanes));
 
 
-console.log(ingresoPanes (entradaConservas));
         
     
 
