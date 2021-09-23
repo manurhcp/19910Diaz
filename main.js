@@ -20,6 +20,7 @@ const pan3 = new Panes ("Pan barra $", 150);
 const pan4 = new Panes ("pan de molde $", 250 );
 
 
+
 class Conservas {
     constructor(variedad, precio){
 
