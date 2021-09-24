@@ -1,4 +1,4 @@
-//ETREGA DESAFÍO CLASE 5: INCORPORAR ARRAYS
+//ETREGA DESAFÍO CLASE 6: INCORPORAR ARRAYS (posible desafío complementario)
 
 const Productos = {opcion1: "Panes", opcion2: "Conservas"}
 
@@ -20,6 +20,8 @@ const pan4 = new Pan ( "pan de molde $", 250 );
 
 const panes=[];
 
+
+
 panes.push(new Pan (" Pan de campo $", 200));
 panes.push(new Pan (" Grisines $", 100));
 panes.push(new Pan (" Pan barra $", 150));
@@ -30,7 +32,21 @@ for (const pan of panes) {
     
     console.log(pan.variedad + pan.precio)
 }
+
+/* Ram pongo esto para que veas que entendí el concepto de sort, pero no estoy pudiendo llamar al array, y no entiendo el por que, si lo podemos ver te lo agradecería*/
+
+const panesPrecioOrdenado = [200, 100, 150, 250];
+panesPrecioOrdenado.sort();
+console.log(panesPrecioOrdenado);
+
+// --------------------(Sigue abajo)--------------------------------------
+
+
 console.log(panes.slice(2,4))
+
+
+
+
 
 class Conserva {
     constructor(variedad, precio){
