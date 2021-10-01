@@ -1,160 +1,339 @@
-//ETREGA DESAFÍO CLASE 6: INCORPORAR ARRAYS (posible desafío complementario)
+const seccionPrincipal = document.getElementById('container');
+let nuevoDiv = document.createElement('div');
+let nuevoH1 = document.createElement('h1');
+let nuevoParagraph = document.createElement('p');
 
-const Productos = {opcion1: "Panes", opcion2: "Conservas"}
+seccionPrincipal.appendChild(nuevoDiv); 
+nuevoDiv.appendChild(nuevoH1);
+nuevoDiv.appendChild(nuevoParagraph);
 
+nuevoH1.innerHTML = "Productos";
+nuevoParagraph.innerHTML = "Nuestros Panes";
+nuevoH1.classList.add('titulo')
+nuevoParagraph.classList.add('subtituloProductos')
 
-class Pan {
-    constructor(variedad, precio) {
+const productos = [{id: 1, variedad: 'Pan de Campo', precio: 200},
+                  {id: 2, variedad: 'Grisines', precio:100},
+                  {id: 3, variedad: 'Pan barra', precio: 150},
+                  {id: 4, variedad: 'pan de molde', precio: 250}];
 
-        this.variedad = variedad;
-        this.precio = precio;
-
-    }
-    
+for (const producto of productos) {
+    let container = document.createElement('div');
+    container.classList.add('productos');
+    container.innerHTML = `<p>Producto: ${producto.variedad}</p>
+                          <p>Precio: $${producto.precio}</p>`;  
+    nuevoDiv.appendChild(container);
 }
 
-const pan1 = new Pan ( "Pan de campo $", 200);
-const pan2 = new Pan ( "Grisines $", 100);
-const pan3 = new Pan ( "Pan barra $", 150);
-const pan4 = new Pan ( "pan de molde $", 250 );
 
-const panes=[];
+// const Productos = {opcion1: "Panes", opcion2: "Conservas"}
 
 
+// class Pan {
+//     constructor(variedad, precio) {
 
-panes.push(new Pan (" Pan de campo $", 200));
-panes.push(new Pan (" Grisines $", 100));
-panes.push(new Pan (" Pan barra $", 150));
-panes.push(new Pan (" Pan de molde $", 250 ));
+//         this.variedad = variedad;
+//         this.precio = precio;
 
-
-for (const pan of panes) {
+//     }
     
-    console.log(pan.variedad + pan.precio)
-}
+// }
 
-/* Ram pongo esto para que veas que entendí el concepto de sort, pero no estoy pudiendo llamar al array, y no entiendo el por que, si lo podemos ver te lo agradecería*/
+// const pan1 = new Pan ( "Pan de campo $", 200);
+// const pan2 = new Pan ( "Grisines $", 100);
+// const pan3 = new Pan ( "Pan barra $", 150);
+// const pan4 = new Pan ( "pan de molde $", 250 );
 
-const panesPrecioOrdenado = [200, 100, 150, 250];
-panesPrecioOrdenado.sort();
-console.log(panesPrecioOrdenado);
-
-// --------------------(Sigue abajo)--------------------------------------
-
-
-console.log(panes.slice(2,4))
+// const panes=[];
 
 
 
+// panes.push(new Pan (" Pan de campo $", 200));
+// panes.push(new Pan (" Grisines $", 100));
+// panes.push(new Pan (" Pan barra $", 150));
+// panes.push(new Pan (" Pan de molde $", 250 ));
 
 
-class Conserva {
-    constructor(variedad, precio){
-
-        this.variedad = variedad;
-        this.precio = precio;
-    }
-}
-
-const conserva1 = new Conserva ("Confitado de Tomates $", 200);
-const conserva2 = new Conserva ("Escabeche de Porotos $", 100);
-const conserva3 = new Conserva ("Escabeche de Pencas $", 150);
-const conserva4 = new Conserva ("Escabeche de Zanahorias $", 250);
-
-
-const conservas =[];
-
-conservas.push(new Conserva (" Confitado de Tomates $", 200));
-conservas.push(new Conserva (" Escabeche de Porotos $", 100));
-conservas.push(new Conserva (" Escabeche de Pencas $", 150));
-conservas.push(new Conserva (" Escabeche de Zanahorias $", 250));
-
-
-for (const conserva of conservas) {
+// for (const pan of panes) {
     
-    console.log(conserva.variedad + conserva.precio)
-}
+//     console.log(pan.variedad + pan.precio)
+// }
 
-console.log(conservas.length);
-
-
+// console.log(panes.slice(2,4))
 
 
+// class Conserva {
+//     constructor(variedad, precio){
 
-let entradaUsuario = parseInt (prompt("Hola, indíquenos el número de la delicia que desea: \n (1)" + Productos.opcion1.toUpperCase() + "\n (2)" + Productos.opcion2.toUpperCase()))
+//         this.variedad = variedad;
+//         this.precio = precio;
+//     }
+// }
+
+// const conserva1 = new Conserva ("Confitado de Tomates $", 200);
+// const conserva2 = new Conserva ("Escabeche de Porotos $", 100);
+// const conserva3 = new Conserva ("Escabeche de Pencas $", 150);
+// const conserva4 = new Conserva ("Escabeche de Zanahorias $", 250);
+
+
+// const conservas =[];
+
+// conservas.push(new Conserva (" Confitado de Tomates $", 200));
+// conservas.push(new Conserva (" Escabeche de Porotos $", 100));
+// conservas.push(new Conserva (" Escabeche de Pencas $", 150));
+// conservas.push(new Conserva (" Escabeche de Zanahorias $", 250));
+
+
+// for (const conserva of conservas) {
     
- let entradaPanes;
- let entradaConservas;
+//     console.log(conserva.variedad + conserva.precio)
+// }
 
- if (entradaUsuario === 1) {
+// console.log(conservas.length);
 
-    entradaPanes = parseInt (prompt("¡Hermosa elección!. Ahora ingrese que panificado desea: \n (1)" + pan1.variedad + pan1.precio + "\n (2)" + pan2.variedad + pan2.precio + "\n (3)" + pan3.variedad + pan3.precio + "\n (4)" + pan4.variedad + pan4.precio));
 
-        console.log(ingresoPanes(entradaPanes));
+
+
+
+// let entradaUsuario = parseInt (prompt("Hola, indíquenos el número de la delicia que desea: \n (1)" + Productos.opcion1.toUpperCase() + "\n (2)" + Productos.opcion2.toUpperCase()))
+    
+//  let entradaPanes;
+//  let entradaConservas;
+
+//  if (entradaUsuario === 1) {
+
+//     entradaPanes = parseInt (prompt("¡Hermosa elección!. Ahora ingrese que panificado desea: \n (1)" + pan1.variedad + pan1.precio + "\n (2)" + pan2.variedad + pan2.precio + "\n (3)" + pan3.variedad + pan3.precio + "\n (4)" + pan4.variedad + pan4.precio));
+
+//         console.log(ingresoPanes(entradaPanes));
  
 
-    }else if (entradaUsuario ===2 ){
+//     }else if (entradaUsuario ===2 ){
 
-        entradaConservas = parseInt (prompt("¡Qué rico!. ¿Qué conservas quiere? \n (1)" + conserva1.variedad + conserva1.precio + "\n (2)" + conserva2.variedad + conserva2.precio + "\n (3)" + conserva3.variedad + conserva3.precio + "\n (4)" + conserva4.variedad + conserva4.precio));
+//         entradaConservas = parseInt (prompt("¡Qué rico!. ¿Qué conservas quiere? \n (1)" + conserva1.variedad + conserva1.precio + "\n (2)" + conserva2.variedad + conserva2.precio + "\n (3)" + conserva3.variedad + conserva3.precio + "\n (4)" + conserva4.variedad + conserva4.precio));
 
-        console.log(ingresoConservas(entradaConservas));
+//         console.log(ingresoConservas(entradaConservas));
 
-    }else if (entradaUsuario > 2 ){ 
-        alert("El producto no existe")
-    }
+//     }else if (entradaUsuario > 2 ){ 
+//         alert("El producto no existe")
+//     }
 
 
-    function ingresoPanes(entradaPanes) {
+//     function ingresoPanes(entradaPanes) {
 
-    switch (entradaPanes) {
-        case 1:
-            return pan1.variedad + pan1.precio;
-            break;
+//     switch (entradaPanes) {
+//         case 1:
+//             return pan1.variedad + pan1.precio;
+//             break;
     
-        case 2:
-            return pan2.variedad + pan2.precio;
-            break;
+//         case 2:
+//             return pan2.variedad + pan2.precio;
+//             break;
             
-        case 3:
-            return pan3.variedad + pan3.precio;
-            break;    
+//         case 3:
+//             return pan3.variedad + pan3.precio;
+//             break;    
     
-        case 4:
-            return pan4.variedad + pan4.precio;
-            break;    
+//         case 4:
+//             return pan4.variedad + pan4.precio;
+//             break;    
         
-        default:
-            return "El producto no existe";
-            break;
-    }
+//         default:
+//             return "El producto no existe";
+//             break;
+//     }
     
-}
+// }
 
-function ingresoConservas(entradaConservas) {
+// function ingresoConservas(entradaConservas) {
 
-    switch (entradaConservas) {
-        case 1:
-            return conserva1.variedad + conserva1.precio;
-            break;
+//     switch (entradaConservas) {
+//         case 1:
+//             return conserva1.variedad + conserva1.precio;
+//             break;
     
-        case 2:
-            return conserva2.variedad + conserva2.precio;
-            break;
+//         case 2:
+//             return conserva2.variedad + conserva2.precio;
+//             break;
             
-        case 3:
-            return conserva3.variedad + conserva3.precio;
-            break;    
+//         case 3:
+//             return conserva3.variedad + conserva3.precio;
+//             break;    
     
-        case 4:
-            return conserva4.variedad + conserva4.precio;
-            break;    
+//         case 4:
+//             return conserva4.variedad + conserva4.precio;
+//             break;    
         
-        default:
-            return "El producto no existe";
-            break;
-    }
+//         default:
+//             return "El producto no existe";
+//             break;
+//     }
     
-}
+// }
+
+
+
+
+
+
+
+
+// //ETREGA DESAFÍO CLASE 6: INCORPORAR ARRAYS (posible desafío complementario)
+
+// const Productos = {opcion1: "Panes", opcion2: "Conservas"}
+
+
+// class Pan {
+//     constructor(variedad, precio) {
+
+//         this.variedad = variedad;
+//         this.precio = precio;
+
+//     }
+    
+// }
+
+// const pan1 = new Pan ( "Pan de campo $", 200);
+// const pan2 = new Pan ( "Grisines $", 100);
+// const pan3 = new Pan ( "Pan barra $", 150);
+// const pan4 = new Pan ( "pan de molde $", 250 );
+
+// const panes=[];
+
+
+
+// panes.push(new Pan (" Pan de campo $", 200));
+// panes.push(new Pan (" Grisines $", 100));
+// panes.push(new Pan (" Pan barra $", 150));
+// panes.push(new Pan (" Pan de molde $", 250 ));
+
+
+// for (const pan of panes) {
+    
+//     console.log(pan.variedad + pan.precio)
+// }
+
+// /* Ram pongo esto para que veas que entendí el concepto de sort, pero no estoy pudiendo llamar al array, y no entiendo el por que, si lo podemos ver te lo agradecería*/
+
+// const panesPrecioOrdenado = [200, 100, 150, 250];
+// panesPrecioOrdenado.sort();
+// console.log(panesPrecioOrdenado);
+
+// // --------------------(Sigue abajo)--------------------------------------
+
+
+// console.log(panes.slice(2,4))
+
+
+
+
+
+// class Conserva {
+//     constructor(variedad, precio){
+
+//         this.variedad = variedad;
+//         this.precio = precio;
+//     }
+// }
+
+// const conserva1 = new Conserva ("Confitado de Tomates $", 200);
+// const conserva2 = new Conserva ("Escabeche de Porotos $", 100);
+// const conserva3 = new Conserva ("Escabeche de Pencas $", 150);
+// const conserva4 = new Conserva ("Escabeche de Zanahorias $", 250);
+
+
+// const conservas =[];
+
+// conservas.push(new Conserva (" Confitado de Tomates $", 200));
+// conservas.push(new Conserva (" Escabeche de Porotos $", 100));
+// conservas.push(new Conserva (" Escabeche de Pencas $", 150));
+// conservas.push(new Conserva (" Escabeche de Zanahorias $", 250));
+
+
+// for (const conserva of conservas) {
+    
+//     console.log(conserva.variedad + conserva.precio)
+// }
+
+// console.log(conservas.length);
+
+
+
+
+
+// let entradaUsuario = parseInt (prompt("Hola, indíquenos el número de la delicia que desea: \n (1)" + Productos.opcion1.toUpperCase() + "\n (2)" + Productos.opcion2.toUpperCase()))
+    
+//  let entradaPanes;
+//  let entradaConservas;
+
+//  if (entradaUsuario === 1) {
+
+//     entradaPanes = parseInt (prompt("¡Hermosa elección!. Ahora ingrese que panificado desea: \n (1)" + pan1.variedad + pan1.precio + "\n (2)" + pan2.variedad + pan2.precio + "\n (3)" + pan3.variedad + pan3.precio + "\n (4)" + pan4.variedad + pan4.precio));
+
+//         console.log(ingresoPanes(entradaPanes));
+ 
+
+//     }else if (entradaUsuario ===2 ){
+
+//         entradaConservas = parseInt (prompt("¡Qué rico!. ¿Qué conservas quiere? \n (1)" + conserva1.variedad + conserva1.precio + "\n (2)" + conserva2.variedad + conserva2.precio + "\n (3)" + conserva3.variedad + conserva3.precio + "\n (4)" + conserva4.variedad + conserva4.precio));
+
+//         console.log(ingresoConservas(entradaConservas));
+
+//     }else if (entradaUsuario > 2 ){ 
+//         alert("El producto no existe")
+//     }
+
+
+//     function ingresoPanes(entradaPanes) {
+
+//     switch (entradaPanes) {
+//         case 1:
+//             return pan1.variedad + pan1.precio;
+//             break;
+    
+//         case 2:
+//             return pan2.variedad + pan2.precio;
+//             break;
+            
+//         case 3:
+//             return pan3.variedad + pan3.precio;
+//             break;    
+    
+//         case 4:
+//             return pan4.variedad + pan4.precio;
+//             break;    
+        
+//         default:
+//             return "El producto no existe";
+//             break;
+//     }
+    
+// }
+
+// function ingresoConservas(entradaConservas) {
+
+//     switch (entradaConservas) {
+//         case 1:
+//             return conserva1.variedad + conserva1.precio;
+//             break;
+    
+//         case 2:
+//             return conserva2.variedad + conserva2.precio;
+//             break;
+            
+//         case 3:
+//             return conserva3.variedad + conserva3.precio;
+//             break;    
+    
+//         case 4:
+//             return conserva4.variedad + conserva4.precio;
+//             break;    
+        
+//         default:
+//             return "El producto no existe";
+//             break;
+//     }
+    
+// }
 
 // // PRIMER ENTREGA PARCIAL DE PROYECTO FINAL
 
@@ -514,15 +693,15 @@ function ingresoConservas(entradaConservas) {
 
 // /* Pedir un texto mediante prompt, concatenar un valor en cada repetición, realizando una salida por cada resultado, hasta que se ingresa “ESC”. */
 
-// let candidato = prompt ("Indique su nombre");
+// let candidato = prompt ("Indique su variedad");
 
-// let nombreEmpresas = prompt ("Indique la/s empresa/s donde trabajó \n" + "Escriba ESC al finalizar");
+// let variedadEmpresas = prompt ("Indique la/s empresa/s donde trabajó \n" + "Escriba ESC al finalizar");
 
-// while (nombreEmpresas != "ESC") {
+// while (variedadEmpresas != "ESC") {
 
-//    console.log(candidato + " " + nombreEmpresas);
+//    console.log(candidato + " " + variedadEmpresas);
 
-//    nombreEmpresas = prompt ("Ingrese la siguiente empresa donde trabajó \n" + "Escriba ESC al finalizar")
+//    variedadEmpresas = prompt ("Ingrese la siguiente empresa donde trabajó \n" + "Escriba ESC al finalizar")
 // }
 
 // /*Pedir un número por prompt, repetir la salida del mensaje “Hola” la cantidad de veces ingresada.*/
@@ -598,11 +777,11 @@ function ingresoConservas(entradaConservas) {
 
 // // DESAFÍO CLASE 1: Crear algoritmo JS simple
 
-// //pedir nombre mendiante prompt 
-// let nombre = prompt("Ingresa tu nombre");
+// //pedir variedad mendiante prompt 
+// let variedad = prompt("Ingresa tu variedad");
 
 // // texto de saludo
-// let saludo = "¡Hola" + " " + nombre + "!";
+// let saludo = "¡Hola" + " " + variedad + "!";
 
 
 
@@ -629,7 +808,7 @@ function ingresoConservas(entradaConservas) {
 // // cocatenación
 // let usuarioContraseña = "su usuario es" + " " + usuario + " " + "y su contraseña es" + " " + contraseña;
 
-// // mostrado en consola: nombre y saludo
+// // mostrado en consola: variedad y saludo
 // console.log(saludo);
 
 // // mostrado en consola: edad parseada + número almacenado en variable
