@@ -1,31 +1,52 @@
-// ETREGA DESAFÍO CLASE 8: Interactuar con html
+// ENTREGA DESAFÍO CLASE 9: Incorporar eventos
 
-const seccionPrincipal = document.getElementById('container');
-let nuevoDiv = document.createElement('div');
-let nuevoH1 = document.createElement('h1');
-let nuevoParagraph = document.createElement('p');
+let contacto = document.getElementById("formulario");
 
-seccionPrincipal.appendChild(nuevoDiv); 
-nuevoDiv.appendChild(nuevoH1);
-nuevoDiv.appendChild(nuevoParagraph);
+contacto.addEventListener("submit", mostrarComentario);
 
-nuevoH1.innerHTML = "Productos";
-nuevoParagraph.innerHTML = "Nuestros Panes";
-nuevoH1.classList.add('titulo')
-nuevoParagraph.classList.add('subtituloProductos')
+function mostrarComentario(event) {
 
-const productos = [{id: 1, variedad: 'Pan de Campo', precio: 200},
-                  {id: 2, variedad: 'Grisines', precio:100},
-                  {id: 3, variedad: 'Pan barra', precio: 150},
-                  {id: 4, variedad: 'pan de molde', precio: 250}];
+    event.preventDefault();
+    let formulario = event.target
+    console.log(`
+        
+        NOMBRE: ${formulario.children[0].value} 
+        APELLIDO: ${formulario.children[1].value} 
+        COMENTARIO: ${formulario.children[2].value}`);
+     
+};
 
-for (const producto of productos) {
-    let container = document.createElement('div');
-    container.classList.add('productos');
-    container.innerHTML = `<p>Producto: ${producto.variedad}</p>
-                          <p>Precio: $${producto.precio}</p>`;  
-    nuevoDiv.appendChild(container);
-}
+
+
+
+// // ETREGA DESAFÍO CLASE 8: Interactuar con html
+
+// const seccionPrincipal = document.getElementById('container');
+// let nuevoDiv = document.createElement('div');
+// let nuevoH1 = document.createElement('h1');
+// let nuevoParagraph = document.createElement('p');
+
+// seccionPrincipal.appendChild(nuevoDiv); 
+// nuevoDiv.appendChild(nuevoH1);
+// nuevoDiv.appendChild(nuevoParagraph);
+
+// nuevoH1.innerHTML = "Productos";
+// nuevoParagraph.innerHTML = "Nuestros Panes";
+// nuevoH1.classList.add('titulo')
+// nuevoParagraph.classList.add('subtituloProductos')
+
+// const productos = [{id: 1, variedad: 'Pan de Campo', precio: 200},
+//                   {id: 2, variedad: 'Grisines', precio:100},
+//                   {id: 3, variedad: 'Pan barra', precio: 150},
+//                   {id: 4, variedad: 'pan de molde', precio: 250}];
+
+// for (const producto of productos) {
+//     let container = document.createElement('div');
+//     container.classList.add('productos');
+//     container.innerHTML = `<p>Producto: ${producto.variedad}</p>
+//                           <p>Precio: $${producto.precio}</p>`;  
+//     nuevoDiv.appendChild(container);
+// }
 
 
 

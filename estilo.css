@@ -8,4 +8,28 @@ h1{
 
 p{
     color: red;
+
+}
+
+
+.imput{
+
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    text-align: center;
+    
+}
+
+.btn{
+
+    flex-direction: row;
+     
+}
+
+.cajaComentario{
+
+  display: flex;
+  
+
 }
