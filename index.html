@@ -5,20 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bardó-Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <link href="estilo.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Contacto</h1>
-    <form id="formulario" class="form">
-        
-        <input type="text" placeholder="Ingrese su nombre" class="imput">
-        <input type="text" placeholder="Ingrese su apellido" class="imput">
-        <input type="text" placeholder="Dejenos su comentario"class="imput" class="cajaComentario" height="20px">
-        <input type="submit" value="Enviar" class="btn">
-        <input type="reset" class="btn">
+    <h1>Productos</h1>
+    <div class="card-group">
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Pan de Campo</h5>
+                    <h6 class="card-subtitle mb-2 text-muted" id="precioCampo"></h6>
+                    <a href="#" class="btn btn-primary btnCarro" id="1">Agregar al carrito</a>  
+                </div>
+            </div>
 
-    </form>
-    
-    <script src="main.js"></script>    
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Grisines</h5>
+                    <h6 class="card-subtitle mb-2 text-muted" id="precioGrisin"></h6>
+                    <a href="#" class="btn btn-primary btnCarro" id="2">Agregar al carrito</a>
+                </div>
+            </div>
+
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Pan barra</h5>
+                    <h6 class="card-subtitle mb-2 text-muted" id="precioBarra"></h6>
+                    <a href="#" class="btn btn-primary btnCarro" id="3">Agregar al carrito</a>                
+                 </div>
+            </div>
+
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Pan de molde</h5>
+                    <h6 class="card-subtitle mb-2 text-muted" id="precioMolde"></h6>
+                    <a href="#" class="btn btn-primary btnCarro" id="4" >Agregar al carrito</a>
+                </div>
+            </div>
+    </div>
+
+    <h2>Carrito</h2>
+
+    <div id="mostrarPrecios">
+
+    </div>
+    <div id="seccionSubtotal">
+        <a href="#" class="btn btn-primary btnCarro" id="btnSubtot" name="Subtotal">Subtotal</a>  
+        <h3 id="mostrarSubtotal"></h3>     
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+<script src="main.js"></script>    
 </body>
 </html>
