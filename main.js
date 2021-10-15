@@ -1,135 +1,87 @@
-// Array de objetos 
+// Array de objetos
 
 const carrito = [];
 
-
-const Productos = [{id: 1, variedad: 'Pan de Campo', precio: 200},
-                  {id: 2, variedad: 'Grisines', precio:100},
-                  {id: 3, variedad: 'Pan barra', precio: 150},
-                  {id: 4, variedad: 'pan de molde', precio: 250}];
-
+const Productos = [
+  { id: 1, variedad: "Pan de Campo", precio: 200 },
+  { id: 2, variedad: "Grisines", precio: 100 },
+  { id: 3, variedad: "Pan barra", precio: 150 },
+  { id: 4, variedad: "pan de molde", precio: 250 },
+];
 
 //Traer id's
 
-let precioCampo = document.getElementById ("precioCampo");
-let precioGrisin = document.getElementById ("precioGrisin");
-let precioBarra = document.getElementById ("precioBarra");
-let precioMolde = document.getElementById ("precioMolde");
-let agregarAlCarro = document.getElementsByClassName ("btnCarro");
+let precioCampo = document.getElementById("precioCampo");
+let precioGrisin = document.getElementById("precioGrisin");
+let precioBarra = document.getElementById("precioBarra");
+let precioMolde = document.getElementById("precioMolde");
 
-let botonSubtotal= document.getElementById ("btnSubtot")
+let agregarAlCarro = document.querySelectorAll(".btnCarro").length - 1;
 
-// colocar precios 
+let botonSubtotal = document.getElementById("btnSubtot");
+
+// colocar precios
 
 precioCampo.innerHTML = `Precio: $ ${Productos[0].precio}`;
 precioGrisin.innerHTML = `Precio: $ ${Productos[1].precio}`;
 precioBarra.innerHTML = `Precio: $ ${Productos[2].precio}`;
 precioMolde.innerHTML = `Precio: $ ${Productos[3].precio}`;
 
+// Escucha de eventos
 
- // Escucha de eventos
 
-agregarAlCarro[0].addEventListener ("click", agregarAlCarrito);
-agregarAlCarro[1].addEventListener ("click", agregarAlCarrito2);
-agregarAlCarro[2].addEventListener ("click", agregarAlCarrito3);
-agregarAlCarro[3].addEventListener ("click", agregarAlCarrito4);
-
-botonSubtotal.addEventListener ("click", mostrarSubt);
-
-// Funciónes agregar al carrito
-
-function agregarAlCarrito() {
-
-    let div = document.getElementById ("mostrarPrecios");
-
-    let nuevoDiv = document.createElement ("div");
-    let nuevoParrafo = document.createElement ("p");
-        
-    div.appendChild (nuevoDiv);
-    nuevoDiv.appendChild (nuevoParrafo);
-        
-    nuevoParrafo.innerHTML = `Producto elegido: ${Productos[0].variedad} $ ${Productos[0].precio}` ;
-
-    carrito.push (Productos[0]);
-    
+for (let i = 0; i < agregarAlCarro; i++) {
+  const botonActual = document.querySelectorAll(".btnCarro")[i];
+  botonActual.addEventListener("click", agregarAlCarrito);
+  botonActual.setAttribute("id", `${Productos[i].id}`);
 }
 
+botonSubtotal.addEventListener("click", mostrarSubt);
 
-function agregarAlCarrito2() {
+// Función agregar al carrito
 
-    let div = document.getElementById ("mostrarPrecios");
+function agregarAlCarrito(e) {
+  console.log(e.target.id);
+  let div = document.getElementById("mostrarPrecios");
+  let nuevoDiv = document.createElement("div");
+  let nuevoParrafo = document.createElement("p");
+  div.appendChild(nuevoDiv);
+  nuevoDiv.appendChild(nuevoParrafo);
+  
+  let foundItem = Productos.find((element, index) => {
+    return element.id == e.target.id;
+  });
+ 
+  nuevoParrafo.innerHTML += `Producto elegido: ${foundItem.variedad} $ ${foundItem.precio}`;
 
-    let nuevoDiv = document.createElement ("div");
-    let nuevoParrafo = document.createElement ("p");
-    
-    div.appendChild (nuevoDiv);
-    nuevoDiv.appendChild (nuevoParrafo);
-    
-    nuevoParrafo.innerHTML = `Producto elegido: ${Productos[1].variedad} $ ${Productos[1].precio}` ;
-    carrito.push (Productos[1]);
+  carrito.push(foundItem);
 
-    
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+ 
 }
-
-
-function agregarAlCarrito3() {
-
-    let div = document.getElementById ("mostrarPrecios");
-
-    let nuevoDiv = document.createElement ("div");
-    let nuevoParrafo = document.createElement ("p");
-    
-    div.appendChild (nuevoDiv);
-    nuevoDiv.appendChild (nuevoParrafo);
-    
-    nuevoParrafo.innerHTML = `Producto elegido: ${Productos[2].variedad} $ ${Productos[2].precio}` ;
-   carrito.push (Productos[2]);
-}
-
-
-function agregarAlCarrito4() {
-
-    let div = document.getElementById ("mostrarPrecios");
-
-    let nuevoDiv = document.createElement ("div");
-    let nuevoParrafo = document.createElement ("p");
-    
-    div.appendChild (nuevoDiv);
-    nuevoDiv.appendChild (nuevoParrafo);
-    
-    nuevoParrafo.innerHTML = `Producto elegido: ${Productos[3].variedad} $ ${Productos[3].precio}` ;
-    carrito.push (Productos[3]);
-}
-
 
 // Función subtotal
 
-function mostrarSubt(){
-    
-    
+function mostrarSubt() {
 
-    let seccionSubtot = document.getElementById ("seccionSubtotal")
-      
-    let mostrarSubtotal = document.createElement ("h3");
-    seccionSubtot.appendChild (mostrarSubtotal);
-
-    let total = 0;
+  
+  let seccionSubtot = document.getElementById("seccionSubtotal");
+  
+  let mostrarSubtotal = document.createElement("h3");
+  seccionSubtot.appendChild(mostrarSubtotal);
+  
+  
+  
+  let storageCarrito = JSON.parse(localStorage.getItem("carrito"));
+  
+  
+   mostrarSubtotal.innerHTML = storageCarrito.reduce(
+    (acc, element) => acc + element.precio,
+    0
+    );
 
    
-    for (const producto of carrito) {
-        
-        total += producto.precio;
-    }
-
-      
-    localStorage.setItem("carrito", JSON.stringify(total));
-    
-    mostrarSubtotal.innerHTML = JSON.parse(localStorage.getItem("carrito"));
-
-    
 }
-
-
 
 
 // ENTREGA DESAFÍO CLASE 9: Incorporar eventos
