@@ -9,50 +9,65 @@ const Productos = [
   { id: 4, variedad: "pan de molde", precio: 250 },
 ];
 
-//Traer id's
+//Traer id', colocar precios y escuchar eventos
 
-let precioCampo = document.getElementById("precioCampo");
-let precioGrisin = document.getElementById("precioGrisin");
-let precioBarra = document.getElementById("precioBarra");
-let precioMolde = document.getElementById("precioMolde");
+// let precioCampo = document.getElementById("precioCampo");
+// let precioGrisin = document.getElementById("precioGrisin");
+// let precioBarra = document.getElementById("precioBarra");
+// let precioMolde = document.getElementById("precioMolde");
 
-let agregarAlCarro = document.querySelectorAll(".btnCarro").length - 1;
 
-let botonSubtotal = document.getElementById("btnSubtot");
+$("#precioCampo").append(`Precio: $ ${Productos[0].precio}`);
+$("#precioGrisin").append(`Precio: $ ${Productos[1].precio}`);
+$("#precioBarra").append(`Precio: $ ${Productos[2].precio}`);
+$("#precioMolde").append(`Precio: $ ${Productos[3].precio}`);
+
+let agregarAlCarro = $(".btnCarro").length - 1;
+
+$("#btnSubtot").click(mostrarSubt);
 
 // colocar precios
 
-precioCampo.innerHTML = `Precio: $ ${Productos[0].precio}`;
-precioGrisin.innerHTML = `Precio: $ ${Productos[1].precio}`;
-precioBarra.innerHTML = `Precio: $ ${Productos[2].precio}`;
-precioMolde.innerHTML = `Precio: $ ${Productos[3].precio}`;
+// precioCampo.innerHTML = `Precio: $ ${Productos[0].precio}`;
+// precioGrisin.innerHTML = `Precio: $ ${Productos[1].precio}`;
+// precioBarra.innerHTML = `Precio: $ ${Productos[2].precio}`;
+// precioMolde.innerHTML = `Precio: $ ${Productos[3].precio}`;
 
 // Escucha de eventos
 
 
 for (let i = 0; i < agregarAlCarro; i++) {
+  
+  // $(".btnCarro").click(agregarAlCarrito).attr("id", `${Productos[i].id}`)---->Traté pero hace otra cosa.
+  
   const botonActual = document.querySelectorAll(".btnCarro")[i];
   botonActual.addEventListener("click", agregarAlCarrito);
   botonActual.setAttribute("id", `${Productos[i].id}`);
 }
 
-botonSubtotal.addEventListener("click", mostrarSubt);
+// botonSubtotal.addEventListener("click", mostrarSubt);
 
 // Función agregar al carrito
 
 function agregarAlCarrito(e) {
-  console.log(e.target.id);
-  let div = document.getElementById("mostrarPrecios");
-  let nuevoDiv = document.createElement("div");
-  let nuevoParrafo = document.createElement("p");
-  div.appendChild(nuevoDiv);
-  nuevoDiv.appendChild(nuevoParrafo);
-  
+
   let foundItem = Productos.find((element, index) => {
     return element.id == e.target.id;
   });
  
-  nuevoParrafo.innerHTML += `Producto elegido: ${foundItem.variedad} $ ${foundItem.precio}`;
+  $("#mostrarPrecios").append(`<div><p>Producto elegido: ${foundItem.variedad} $ ${foundItem.precio}</p></div>`)
+
+  // let div = document.getElementById("mostrarPrecios");
+  // let nuevoDiv = document.createElement("div");
+  // let nuevoParrafo = document.createElement("p");
+  // div.appendChild(nuevoDiv);
+  // nuevoDiv.appendChild(nuevoParrafo);
+  
+  // let foundItem = Productos.find((element, index) => {
+  //   return element.id == e.target.id;
+  // });
+ 
+  // nuevoParrafo.innerHTML += `Producto elegido: ${foundItem.variedad} $ ${foundItem.precio}`;
 
   carrito.push(foundItem);
 
@@ -64,23 +79,29 @@ function agregarAlCarrito(e) {
 
 function mostrarSubt() {
 
-  
-  let seccionSubtot = document.getElementById("seccionSubtotal");
-  
-  let mostrarSubtotal = document.createElement("h3");
-  seccionSubtot.appendChild(mostrarSubtotal);
-  
-  
-  
   let storageCarrito = JSON.parse(localStorage.getItem("carrito"));
   
-  
-   mostrarSubtotal.innerHTML = storageCarrito.reduce(
+  $("#seccionSubtotal").append(`<h3>${storageCarrito.reduce(
     (acc, element) => acc + element.precio,
     0
-    );
+    )}</h3>`);
 
-   
+  
+  // let seccionSubtot = document.getElementById("seccionSubtotal");
+  
+  // let mostrarSubtotal = document.createElement("h3");
+  // seccionSubtot.appendChild(mostrarSubtotal);
+  
+  
+  
+  // let storageCarrito = JSON.parse(localStorage.getItem("carrito"));
+  
+  
+  //  mostrarSubtotal.innerHTML = storageCarrito.reduce(
+  //   (acc, element) => acc + element.precio,
+  //   0
+  //   );
+        
 }
 
 
