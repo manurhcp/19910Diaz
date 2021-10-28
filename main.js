@@ -1,3 +1,7 @@
+// Constante API
+
+const url = "https://www.dolarsi.com/api/api.php?type=valoresprincipales";
+
 // Array de objetos
 
 const carrito = [];
@@ -5,16 +9,14 @@ const carrito = [];
 const Productos = [
   { id: 1, variedad: "Pan de Campo", precio: 200 },
   { id: 2, variedad: "Grisines", precio: 100 },
-  { id: 3, variedad: "Pan barra", precio: 150 },
-  { id: 4, variedad: "pan de molde", precio: 250 },
+  { id: 3, variedad: "Pan Barra", precio: 150 },
+  { id: 4, variedad: "Pan de Molde", precio: 250 },
 ];
+
+
 
 //Traer id', colocar precios y escuchar eventos
 
-// let precioCampo = document.getElementById("precioCampo");
-// let precioGrisin = document.getElementById("precioGrisin");
-// let precioBarra = document.getElementById("precioBarra");
-// let precioMolde = document.getElementById("precioMolde");
 
 
 $("#precioCampo").append(`Precio: $ ${Productos[0].precio}`);
@@ -22,89 +24,106 @@ $("#precioGrisin").append(`Precio: $ ${Productos[1].precio}`);
 $("#precioBarra").append(`Precio: $ ${Productos[2].precio}`);
 $("#precioMolde").append(`Precio: $ ${Productos[3].precio}`);
 
-let agregarAlCarro = $(".btnCarro").length - 1;
+let agregarAlCarro = $(".btnCarro").length - 1.;
 
-$("#btnSubtot").click(mostrarSubt);
+$("#btnSubtot").click(mostrarSubt)
 
-// colocar precios
-
-// precioCampo.innerHTML = `Precio: $ ${Productos[0].precio}`;
-// precioGrisin.innerHTML = `Precio: $ ${Productos[1].precio}`;
-// precioBarra.innerHTML = `Precio: $ ${Productos[2].precio}`;
-// precioMolde.innerHTML = `Precio: $ ${Productos[3].precio}`;
-
-// Escucha de eventos
 
 
 for (let i = 0; i < agregarAlCarro; i++) {
   
-  // $(".btnCarro").click(agregarAlCarrito).attr("id", `${Productos[i].id}`)---->Traté pero hace otra cosa.
-  
+   
   const botonActual = document.querySelectorAll(".btnCarro")[i];
   botonActual.addEventListener("click", agregarAlCarrito);
   botonActual.setAttribute("id", `${Productos[i].id}`);
 }
 
-// botonSubtotal.addEventListener("click", mostrarSubt);
+
 
 // Función agregar al carrito
 
 function agregarAlCarrito(e) {
 
+  
+
   let foundItem = Productos.find((element, index) => {
     return element.id == e.target.id;
   });
- 
-  $("#mostrarPrecios").append(`<div><p>Producto elegido: ${foundItem.variedad} $ ${foundItem.precio}</p></div>`)
-
-  // let div = document.getElementById("mostrarPrecios");
-  // let nuevoDiv = document.createElement("div");
-  // let nuevoParrafo = document.createElement("p");
-  // div.appendChild(nuevoDiv);
-  // nuevoDiv.appendChild(nuevoParrafo);
   
-  // let foundItem = Productos.find((element, index) => {
-  //   return element.id == e.target.id;
-  // });
- 
-  // nuevoParrafo.innerHTML += `Producto elegido: ${foundItem.variedad} $ ${foundItem.precio}`;
-
   carrito.push(foundItem);
 
+  // Efectos sobre precios y variedad de productos
+
+  $("#productoElegido").hide();
+  $("#productoElegido").slideDown(800);
+  
+  $("#mostrarPrecios").append(`<div><p id="productoElegido">Producto elegido: ${foundItem.variedad} $ ${foundItem.precio}</p></div><hr>`)
+  
   localStorage.setItem("carrito", JSON.stringify(carrito));
- 
 }
+ 
+
 
 // Función subtotal
 
-function mostrarSubt() {
 
+
+function mostrarSubt() {
   let storageCarrito = JSON.parse(localStorage.getItem("carrito"));
-  
-  $("#seccionSubtotal").append(`<h3>${storageCarrito.reduce(
+  let totalCarrito = storageCarrito.reduce(
     (acc, element) => acc + element.precio,
     0
-    )}</h3>`);
-
-  
-  // let seccionSubtot = document.getElementById("seccionSubtotal");
-  
-  // let mostrarSubtotal = document.createElement("h3");
-  // seccionSubtot.appendChild(mostrarSubtotal);
-  
-  
-  
-  // let storageCarrito = JSON.parse(localStorage.getItem("carrito"));
-  
-  
-  //  mostrarSubtotal.innerHTML = storageCarrito.reduce(
-  //   (acc, element) => acc + element.precio,
-  //   0
-  //   );
-        
+  );  
+  $.get(url, function (res, status) {
+    if (status === "success") {
+      let valorDolar = parseFloat(res[1].casa.venta);
+      $("#seccionSubtotal")
+        .append(`<h3 class="casa"> Su total a pagar en pesos es $:  ${totalCarrito} </h3><hr>`) 
+        .append(`<h3> Su total en dólares es u$s: ${totalCarrito / valorDolar}</h3><hr>`);
+    }
+  });
 }
 
+// Funcion darkmode
 
+$(`.checkbox`).click(function() {
+  if ($(`input.checkbox`).is(`:checked`)) {
+    $(`.theme`).attr(`href`,`dark.css`)
+  }else{
+    $(`.theme`).attr(`href`, `light.css`)
+  }
+});
+ 
+// Función para mostrar las cards
+
+function mostrarCards() {
+  
+
+for (const producto of Productos) {
+
+  $(".tarjetas").append(` <div class="card text-center row" style="width: 18rem;">
+        <div class="card-body bg-info text-white">
+            <h5 class="card-title">${producto.variedad}</h5>
+           <h6 class="card-subtitle mb-2 text-muted" id="precioCampo">Precio: $ ${producto.precio}</h6>
+           <a href="#" class="btn btn-primary btnCarro" id="${producto.id}">Agregar al carrito</a>  
+        </div>`);
+
+  
+}
+
+$(".btnCarro").click(agregarAlCarrito);
+
+  
+}
+mostrarCards()
+
+// Efecto JQ fadeIn sobre las Cards
+
+$(".tarjetas").hide();
+$(".tarjetas").fadeIn(2000);
+
+
+ 
 // ENTREGA DESAFÍO CLASE 9: Incorporar eventos
 
 // let contacto = document.getElementById("formulario");
