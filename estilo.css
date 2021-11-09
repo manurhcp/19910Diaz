@@ -1,25 +1,54 @@
-/* #box {
-    width: 100%;
-    height: 200px;
-    background-color: blueviolet;
-  } */
-  
-  button {
+/* Márgenes */
+body{
+
+  margin: 20px;
+}
+
+/* Modificaciones de textos */
+h1{
+  margin:20px;
+  text-align: center;
+  font-size: 75px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: grey;
+}
+
+h3{
+  font-size: 25px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(182, 179, 179);
+}
+
+
+h5{
+  font-size: 25px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(182, 179, 179);
+}
+
+h6{
+  font-size: 20px;
+}
+
+/* Dark / light mode sacado de W3School */
+button {
     margin: 10px 10px 10px 0px;
     padding: 6px 12px;
-  }
+}
 
-  #canvas-wrapper.dark-mode {
+#canvas-wrapper.dark-mode {
     background: #222;
     color: #DDD;
-  }
+}
 
-   /* The switch - the box around the slider */
+/* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
+  margin-bottom: 10px;
+  
 }
 
 /* Hide default HTML checkbox */
@@ -37,7 +66,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: rgb(226, 204, 106);
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -49,13 +78,13 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: rgb(226, 204, 106);
 }
 
 input:focus + .slider {
@@ -76,5 +105,46 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 } 
+
+
+.btnModo{
+  font-size: 20px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: grey;
+}
+
+
+
+/* Márgenes */
+.tarjetas{
+  margin: 50px;
+  
+}
+
+.imagenes{
+
+  margin-top: 20px;
+}
+
+/* Imágene Header */
+.imagenFondo{
+  background-image: url(img/harina-4.jpg);
+  background-position: top;
+  background-size: cover;
+  background-position: center center;
+  height: 60vh; 
+}
+
+.imgHeader{
+
+  width: 700px;
+  
+}
+
+/* Footer */
+.bgFooter{
+  
+  background-color: rgba(33, 37, 41) ;
+}
   
   
