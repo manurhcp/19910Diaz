@@ -13,12 +13,7 @@ const Productos = [
   { id: 4, variedad: "Pan de Molde", precio: 250, img: "img/panMoldeTabla.jpg"},
 ];
 
-//Traer id', colocar precios y escuchar eventos
-
-$("#precioCampo").append(`Precio: $ ${Productos[0].precio}`);
-$("#precioGrisin").append(`Precio: $ ${Productos[1].precio}`);
-$("#precioBarra").append(`Precio: $ ${Productos[2].precio}`);
-$("#precioMolde").append(`Precio: $ ${Productos[3].precio}`);
+// escuchar eventos
 
 let agregarAlCarro = $(".btnCarro").length - 1.;
 
